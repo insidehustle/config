@@ -6,7 +6,7 @@ import os
 import subprocess
 
 def base_mac_setup():
-    install = "install"
+    install = "get started"
     print(f"{1}", install)
 
 if __name__ == '__main__':
