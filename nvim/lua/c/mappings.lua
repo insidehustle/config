@@ -7,10 +7,7 @@
 local function bind(op, outer_opts)
     outer_opts = outer_opts or { noremap = true }
     return function(lhs, rhs, opts)
-        opts = vim.tbl_extend("force",
-            outer_opts,
-            opts or {}
-        )
+        opts = vim.tbl_extend("force", outer_opts, opts or {})
         vim.keymap.set(op, lhs, rhs, opts)
     end
 end
@@ -55,25 +52,12 @@ nnoremap("<leader>fpr", ":lua require'telescope'.extensions.project.project{}<CR
 nnoremap("<leader>fql", "<cmd>Telescope quickfix<CR>")
 
 ---- Trouble
-nnoremap("<leader>xx", "<cmd>Trouble<cr>",
-    { silent = true, noremap = true }
-)
-nnoremap("<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>",
-    { silent = true, noremap = true }
-)
-nnoremap("<leader>xd", "<cmd>Trouble document_diagnostics<cr>",
-    { silent = true, noremap = true }
-)
-nnoremap("<leader>xl", "<cmd>Trouble loclist<cr>",
-    { silent = true, noremap = true }
-)
-nnoremap("<leader>xq", "<cmd>Trouble quickfix<cr>",
-    { silent = true, noremap = true }
-)
-nnoremap("gR", "<cmd>Trouble lsp_references<cr>",
-    { silent = true, noremap = true }
-)
-
+nnoremap("<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
+nnoremap("<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", { silent = true, noremap = true })
+nnoremap("<leader>xd", "<cmd>Trouble document_diagnostics<cr>", { silent = true, noremap = true })
+nnoremap("<leader>xl", "<cmd>Trouble loclist<cr>", { silent = true, noremap = true })
+nnoremap("<leader>xq", "<cmd>Trouble quickfix<cr>", { silent = true, noremap = true })
+nnoremap("gR", "<cmd>Trouble lsp_references<cr>", { silent = true, noremap = true })
 
 -- navigate within insert mode
 inoremap("<C-h>", "<Left>")
@@ -101,15 +85,15 @@ nnoremap("<leader><CR>", ":so ~/.config/nvim/init.vim<CR>")
 nnoremap("<leader><leader>", "<c-^>")
 
 -- Copy to clipboard
-vnoremap('<leader>y', '"+y')
-nnoremap('<leader>Y', '"+yg_')
-nnoremap('<leader>y', '"+y')
+vnoremap("<leader>y", '"+y')
+nnoremap("<leader>Y", '"+yg_')
+nnoremap("<leader>y", '"+y')
 
 -- " Paste from clipboard
-nnoremap('<leader>p', '"+p')
-nnoremap('<leader>P', '"+P')
-vnoremap('<leader>p', '"+p')
-vnoremap('<leader>P', '"+P')
+nnoremap("<leader>p", '"+p')
+nnoremap("<leader>P", '"+P')
+vnoremap("<leader>p", '"+p')
+vnoremap("<leader>P", '"+P')
 
 -- Navigation
 -- Better window navigation
@@ -143,9 +127,9 @@ inoremap("<C-c>", "<ESC>")
 -- nnoremap('<C-e>', ":Explore<CR>")
 --
 -- explorer
-nnoremap('<C-s>', ':w<CR>', { silent = true })
-nnoremap('<C-f>', ':lua vim.lsp.buf.formatting_sync(nil,1000)<CR>', { silent = true })
-inoremap('<C-s>', '<Esc><C-s>a', { silent = true })
+nnoremap("<C-s>", ":w<CR>", { silent = true })
+nnoremap("<C-f>", ":lua vim.lsp.buf.formatting_sync(nil,1000)<CR>", { silent = true })
+inoremap("<C-s>", "<Esc><C-s>a", { silent = true })
 
 -- moving selected text up and down
 vnoremap("J", ":m '>+1<CR>gv=gv")
@@ -174,18 +158,20 @@ nnoremap("<leader>du", "<cmd>lua require'dapui'.toggle()<cr>")
 nnoremap("<leader>dt", "<cmd>lua require'dap'.terminate()<cr>")
 
 -- Zen-mode
-nnoremap('<C-w>o', '<cmd>ZenMode<cr>', { silent = true })
+nnoremap("<C-w>o", "<cmd>ZenMode<cr>", { silent = true })
 
 -- LSP Saga
-nnoremap('<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', silent_ops)
-nnoremap('K', '<Cmd>Lspsaga hover_doc<CR>', silent_ops)
-nnoremap('gd', '<Cmd>Lspsaga lsp_finder<CR>', silent_ops)
-inoremap('<C-k>', '<Cmd>Lspsaga signature_help<CR>', silent_ops)
-nnoremap('gp', '<Cmd>Lspsaga preview_definition<CR>', silent_ops)
-nnoremap('gr', '<Cmd>Lspsaga rename<CR>', silent_ops)
-nnoremap('<leader>ca', '<Cmd>Lspsaga code_action<CR>', silent_ops)
-vnoremap("<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", silent_ops)
+nnoremap("<C-j>", "<Cmd>Lspsaga diagnostic_jump_next<CR>", silent_ops)
+nnoremap("K", "<Cmd>Lspsaga hover_doc<CR>", silent_ops)
+nnoremap("gd", "<Cmd>Lspsaga lsp_finder<CR>", silent_ops)
+inoremap("<C-k>", "<Cmd>Lspsaga signature_help<CR>", silent_ops)
+nnoremap("gp", "<Cmd>Lspsaga preview_definition<CR>", silent_ops)
+nnoremap("gr", "<Cmd>Lspsaga rename<CR>", silent_ops)
+nnoremap("<F4>", "<Cmd>Lspsaga code_action<CR>", silent_ops)
+vnoremap("<F4>", "<cmd><C-U>Lspsaga range_code_action<CR>", silent_ops)
 
+-- TransparentToggle
+nnoremap("<leader>tt", "<Cmd>TransparentToggle<CR>", silent_ops)
 
 -- [[
 --

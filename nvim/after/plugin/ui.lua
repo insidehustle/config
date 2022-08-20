@@ -1,5 +1,5 @@
 -- Default options:
-require('kanagawa').setup({
+require("kanagawa").setup({
     undercurl = true, -- enable undercurls
     commentStyle = { italic = true },
     functionStyle = {},
@@ -18,7 +18,7 @@ require('kanagawa').setup({
 
 -- setup must be called before loading
 vim.g.material_style = "deep ocean"
-require('material').setup({
+require("material").setup({
 
     contrast = {
         sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
@@ -35,18 +35,18 @@ require('material').setup({
         keywords = false, -- Enable italic keywords
         functions = false, -- Enable italic functions
         strings = false, -- Enable italic strings
-        variables = false -- Enable italic variables
+        variables = false, -- Enable italic variables
     },
 
     contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
         "terminal", -- Darker terminal background
         "packer", -- Darker packer background
-        "qf" -- Darker qf list background
+        "qf", -- Darker qf list background
     },
 
     high_visibility = {
         lighter = false, -- Enable higher contrast text for lighter style
-        darker = true -- Enable higher contrast text for darker style
+        darker = true, -- Enable higher contrast text for darker style
     },
 
     disable = {
@@ -54,7 +54,7 @@ require('material').setup({
         borders = false, -- Disable borders between verticaly split windows
         background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
         term_colors = false, -- Prevent the theme from setting terminal colors
-        eob_lines = false -- Hide the end-of-buffer lines
+        eob_lines = false, -- Hide the end-of-buffer lines
     },
 
     lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
@@ -79,8 +79,13 @@ require('material').setup({
         indent_blankline = false,
         nvim_illuminate = true,
         mini = false,
-    }
+    },
 })
-vim.cmd("colorscheme material")
 
--- vim.cmd("colorscheme kanagawa")
+require("everblush").setup({
+    nvim_tree = { contrast = true },
+})
+
+-- vim.cmd("colorscheme material")
+--
+vim.cmd("colorscheme kanagawa")

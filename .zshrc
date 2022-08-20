@@ -2,8 +2,8 @@
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-
+set -o vi
+#
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -12,6 +12,58 @@ ZSH_THEME="robbyrussell"
 # peepcode
 
 
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+ DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -34,11 +86,11 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='nvim'
-# else
-#   export EDITOR='nvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -141,61 +193,8 @@ if [ -f '/Users/luke.caradine/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/l
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/luke.caradine/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/luke.caradine/google-cloud-sdk/completion.zsh.inc'; fi
 
-encode64() {
-    if [[ $# -eq 0 ]]; then
-        cat | base64
-    else
-        printf '%s' $1 | base64
-    fi
-}
-
-decode64() {
-    if [[ $# -eq 0 ]]; then
-        cat | base64 --decode
-    else
-        printf '%s' $1 | base64 --decode
-    fi
-}
-alias e64=encode64
-alias d64=decode64
-# autoload -U +X bashcompinit && bashcompinit
-# complete -o nospace -C /usr/local/bin/terraform terraform
-
-
-# BEGIN SNIPPET: Magento Cloud CLI configuration
-# HOME=${HOME:-'/Users/luke.caradine'}
-# export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
-# if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
-
-# # BEGIN SNIPPET: Platform.sh CLI configuration
-# HOME=${HOME:-'/Users/luke.caradine'}
-# export PATH="$HOME/"'.platformsh/bin':"$PATH"
-# if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
-
-generatecsr() {
-# Common Name: The FQDN (fully-qualified domain name) you want to secure with the certificate such as www.google.com, secure.website.org, *.domain.net, etc.
-# Organization: The full legal name of your organization including the corporate identifier.
-# Organization Unit (OU): Your department such as ‘Information Technology’ or ‘Website Security.’
-# City or Locality: The locality or city where your organization is legally incorporated. Do not abbreviate.
-# State or Province: The state or province where your organization is legally incorporated. Do not abbreviate.
-# Country: The official two-letter country code (i.e. US, CH) where your organization is legally incorporated.
-   openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
-}
-alias gencsr=generatecsr
-#. $(pack completion --shell zsh)
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-alias b="prettybat"
-alias rgf="rg --files | fzf"
-alias upgrade="brew upgrade && npm update -g && gcloud components update"
-alias nv="nvim ."
-alias lv="lvim ."
-# alias datagrip=~/.jetbrainscmds/datagrip
-alias e="exa -lTx --git-ignore --icons --git --time=modified --time-style=default -h --octal-permissions -L=2"
-alias e1="exa -lTx --git-ignore --icons --git --time=modified --time-style=default -h --octal-permissions -L=1"
-alias e2="exa -lTx --git-ignore --icons --git --time=modified --time-style=default -h --octal-permissions -L=2"
-alias e3="exa -lTx --git-ignore --icons --git --time=modified --time-style=default -h --octal-permissions -L=3"
-alias ea="exa -lTx --icons --git --time=modified --time-style=default -h --octal-permissions"
-
+source $HOME/zsh/aliases.zsh --source_only
+source $HOME/zsh/env.zsh --source_only
 
 #Eval section for: 
 #zoxide; https://github.com/ajeetdsouza/zoxide and 
